@@ -55,4 +55,10 @@ export class TracksService {
 
     this.tracks.splice(index, 1);
   }
+
+  removeAlbumLinks(albumId: string) {
+    this.tracks = this.tracks.map((track) =>
+      track.albumId === albumId ? { ...track, albumId: null } : track,
+    );
+  }
 }
