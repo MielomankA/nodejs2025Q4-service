@@ -11,6 +11,8 @@
 git clone {repository URL}
 ```
 
+## Use node version `24.10.0`
+
 ## Installing NPM modules
 
 ```
