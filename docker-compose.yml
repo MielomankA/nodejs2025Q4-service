@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.app
     container_name: nodejs-service-mielomanka
+    image: mielomanka/nodejs2025q4-service-app:latest
     env_file:
       - .env
     environment:
@@ -22,6 +23,7 @@ services:
       context: .
       dockerfile: Dockerfile.db
     container_name: home-lib-db-mielomanka
+    image: mielomanka/nodejs2025q4-service-postgres:latest
     restart: unless-stopped
     env_file:
       - .env
