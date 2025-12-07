@@ -35,11 +35,13 @@ services:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - pglogs:/var/log/postgresql 
     networks:
       - home-lib-network
 
 volumes:
   pgdata:
+  pglogs:
 
 networks:
   home-lib-network:
