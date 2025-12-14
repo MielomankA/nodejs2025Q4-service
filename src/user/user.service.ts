@@ -8,10 +8,13 @@ import { User } from 'src/types/user';
 import { randomUUID } from 'node:crypto';
 import { CreateUserDto } from 'src/dto/create-user.dto';
 import { UpdatePasswordDto } from 'src/dto/update-password.dto';
+import { LoggingService } from '../logging/logging.service';
 
 @Injectable()
 export class UserService {
   private users: User[] = [];
+
+  constructor(private readonly logger: LoggingService) {}
 
   private hidePassword(user: User) {
     return {
@@ -24,6 +27,10 @@ export class UserService {
   }
 
   findAll() {
+    this.logger.customLog('Fetching all users', UserService.name, {
+      source: 'UserService',
+    });
+
     return this.users.map((user) => this.hidePassword(user));
   }
 
