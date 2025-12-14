@@ -23,6 +23,16 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter(logger));
   app.useGlobalInterceptors(new HttpLoggingInterceptor(logger));
 
+  process.on('uncaughtException', (err: Error) => {
+    logger.error('Uncaught Exception', err.stack, 'Process');
+    process.exit(1);
+  });
+
+  process.on('unhandledRejection', (reason: unknown) => {
+    logger.error('Unhandled Rejection', JSON.stringify(reason), 'Process');
+  });
+
   await app.listen(process.env.PORT || 4000);
 }
+
 bootstrap();
